@@ -1,9 +1,9 @@
 import streamlit as st
 from lib.firebase_client import get_approved_jobs
 
-st.set_page_config(page_title="Browse Jobs · BioAgri Careers", page_icon="🔍", layout="wide")
+st.set_page_config(page_title="Browse · BioAgri Careers", page_icon="🔍", layout="wide")
 
-st.title("🔍 Browse Jobs & Internships")
+st.title("🔍 Browse Jobs, Internships & Scholarships")
 
 try:
     jobs = get_approved_jobs()
@@ -23,7 +23,7 @@ with col2:
     types = ["All types"] + sorted({j.get("jobType", "Other") for j in jobs})
     type_filter = st.selectbox("Type", types)
 with col3:
-    search = st.text_input("Search by keyword", placeholder="e.g. intern, research, Lahore")
+    search = st.text_input("Search by keyword", placeholder="e.g. intern, scholarship, Lahore")
 
 filtered = jobs
 if category_filter != "All categories":
@@ -38,12 +38,15 @@ st.caption(f"Showing {len(filtered)} of {len(jobs)} listings")
 
 for job in sorted(filtered, key=lambda j: j.get("createdAt") or 0, reverse=True):
     with st.container(border=True):
-        st.markdown(f"### {job.get('title')}")
+        badge = "🎓" if job.get("jobType") == "Scholarship" else "💼"
+        st.markdown(f"### {badge} {job.get('title')}")
         st.caption(f"**{job.get('organization')}** · {job.get('category')} · {job.get('jobType')} · {job.get('location')}")
+        if job.get("funding"):
+            st.info(f"💰 Funding: {job.get('funding')}")
         st.write(job.get("description", ""))
 
         with st.expander("Requirements & how to apply"):
-            st.markdown(f"**Requirements:** {job.get('requirements', 'Not specified')}")
+            st.markdown(f"**Requirements/Eligibility:** {job.get('requirements', 'Not specified')}")
             if job.get("deadline"):
                 st.markdown(f"**Deadline:** {job.get('deadline')}")
             contact = job.get("contact", "")
