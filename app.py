@@ -8,11 +8,26 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
     html, body, [class*="css"] { font-family: 'Poppins', sans-serif; }
+
     .stButton > button {
         border-radius: 8px; border: none; background-color: #2E7D32;
         color: white; font-weight: 600; padding: 0.5rem 1.5rem;
+        width: 100%;
     }
     h1, h2, h3 { color: #1B5E20; }
+
+    /* Mobile-friendly adjustments */
+    @media (max-width: 640px) {
+        h1 { font-size: 1.6rem !important; }
+        h2 { font-size: 1.3rem !important; }
+        h3 { font-size: 1.1rem !important; }
+        .stButton > button { font-size: 0.9rem; padding: 0.5rem 1rem; }
+        [data-testid="stPageLink"] { padding: 0.4rem 0.6rem; font-size: 0.9rem; }
+    }
+
+    [data-testid="stPageLink"] {
+        border-radius: 8px; background-color: #EDF3ED; padding: 0.3rem 0.8rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
