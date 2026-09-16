@@ -24,12 +24,14 @@ st.write(
     "and more — or post a listing if you're hiring or offering a scholarship."
 )
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.page_link("pages/1_Browse_Jobs.py", label="💼 Jobs / 🎓 Scholarships", icon="🔍")
 with col2:
     st.page_link("pages/3_Post_a_Job.py", label="📝 Post a listing", icon="📝")
 with col3:
+    st.page_link("pages/8_Blog.py", label="📰 Blog", icon="📰")
+with col4:
     st.page_link("pages/4_My_Account.py", label="👤 My account", icon="👤")
 
 st.divider()
