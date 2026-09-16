@@ -17,18 +17,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("🌱 BioAgri Careers")
-st.subheader("Jobs & internships for Biology and Agriculture students in Pakistan")
+st.subheader("Jobs, internships & scholarships for Biology and Agriculture students in Pakistan")
 
 st.write(
     "Find opportunities in botany, agronomy, biotechnology, environmental science, "
-    "and more — or post a listing if you're hiring."
+    "and more — or post a listing if you're hiring or offering a scholarship."
 )
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.page_link("pages/1_Browse_Jobs.py", label="🔍 Browse jobs", icon="🔍")
+    st.page_link("pages/1_Browse_Jobs.py", label="🔍 Browse listings", icon="🔍")
 with col2:
-    st.page_link("pages/3_Post_a_Job.py", label="📝 Post a job", icon="📝")
+    st.page_link("pages/3_Post_a_Job.py", label="📝 Post a listing", icon="📝")
 with col3:
     st.page_link("pages/4_My_Account.py", label="👤 My account", icon="👤")
 
@@ -43,8 +43,9 @@ try:
     else:
         jobs_sorted = sorted(jobs, key=lambda j: j.get("createdAt") or 0, reverse=True)
         for job in jobs_sorted[:5]:
+            badge = "🎓" if job.get("jobType") == "Scholarship" else "💼"
             with st.container(border=True):
-                st.markdown(f"**{job.get('title')}** — {job.get('organization')}")
+                st.markdown(f"**{badge} {job.get('title')}** — {job.get('organization')}")
                 st.caption(f"{job.get('category')} · {job.get('jobType')} · {job.get('location')}")
 except Exception as e:
     st.warning("Couldn't load listings right now.")
