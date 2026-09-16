@@ -17,7 +17,7 @@ def get_db():
 
 
 def post_job(title, organization, category, job_type, location, description,
-             requirements, deadline, contact, poster_uid=None, poster_email=None):
+             requirements, deadline, contact, funding=None, poster_uid=None, poster_email=None):
     db = get_db()
     db.collection("jobs").add({
         "title": title,
@@ -29,6 +29,7 @@ def post_job(title, organization, category, job_type, location, description,
         "requirements": requirements,
         "deadline": deadline,
         "contact": contact,
+        "funding": funding,
         "status": "Pending",
         "posterUid": poster_uid,
         "posterEmail": poster_email,
