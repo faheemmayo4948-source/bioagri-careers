@@ -16,6 +16,8 @@ def get_db():
     return firestore.client()
 
 
+# --- Jobs / Internships / Scholarships ---
+
 def post_job(title, organization, category, job_type, location, description,
              requirements, deadline, contact, funding=None, poster_uid=None, poster_email=None):
     db = get_db()
@@ -73,7 +75,11 @@ def get_jobs_by_poster(uid):
 def update_job_status(job_id, new_status):
     db = get_db()
     db.collection("jobs").document(job_id).update({"status": new_status})
-    def create_blog_post(title, content, category, image_url, author_email):
+
+
+# --- Blog ---
+
+def create_blog_post(title, content, category, image_url, author_email):
     db = get_db()
     db.collection("blog_posts").add({
         "title": title,
