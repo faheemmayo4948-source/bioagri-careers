@@ -26,7 +26,7 @@ st.write(
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    st.page_link("pages/1_Browse_Jobs.py", label="🔍 Browse listings", icon="🔍")
+    st.page_link("pages/1_Browse_Jobs.py", label="💼 Jobs / 🎓 Scholarships", icon="🔍")
 with col2:
     st.page_link("pages/3_Post_a_Job.py", label="📝 Post a listing", icon="📝")
 with col3:
